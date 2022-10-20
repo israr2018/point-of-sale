@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect } from "react"
+import {
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import ProductsPage from "@pages/Product"
+import GalleryPage from "@pages/Gallery"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <BrowserRouter>
+        <Routes>
+            <Route  path="/" exact  element={<ProductsPage/>}/>
+            <Route path="/gallery"  exact element={<GalleryPage/>}/>
+        </Routes>
+    </BrowserRouter>
     </div>
   );
 }

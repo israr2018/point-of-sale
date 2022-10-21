@@ -15,7 +15,7 @@ const AddProduct= ({onClose,fetchProducts})=> {
       const {data:res}=await api.post("/products",payload)
       notification.success({
         message: `Success`,
-        description: res,
+        description: "Product is added!",
         placement: "bottomRight",
       });
     } catch (error) {

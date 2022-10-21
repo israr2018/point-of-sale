@@ -7,7 +7,7 @@ import DeleteProduct from '../DeleteProduct/DeleteProduct';
 import AddProduct from '../AddProduct/AddProduct';
 import api from '../../../api/RequestInterCeptor';
 const ProductList=()=>{
-  const [poducts, setProducts]=useState([])
+  const [products, setProducts]=useState([])
   const fetchProducts=async()=>{
     try {
       const {data:res}=await api.get('/products');
@@ -74,8 +74,10 @@ const ProductList=()=>{
                 Childrens={(onClose)=>(<AddProduct onClose={onClose} fetchProducts={fetchProducts} />)}
                 
                 />
-            
-      <CustomTable   columns={columns} dataSource={poducts} />
+      {
+        products.length>0?<CustomTable   columns={columns} dataSource={products} />:<h3>No Products</h3>
+      }   
+      
       </>
     
     )

@@ -1,15 +1,18 @@
 import * as React from 'react';
+import { useEffect,useState } from 'react';
 import { Row, Col, Button, notification,Input } from "antd";
 // const { TextArea } = Input;
-
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import axios from 'axios';
-
+import api from '@api/RequestInterCeptor'
 const AddProduct= ({onClose,fetchProducts})=> {
+ const initialValues={
+  productName:'',
+  price:''
+ }
   const addProduct=async(payload)=>{
     try {
-      const {data:res}=axios.post("/products",payload)
+      const {data:res}=await api.post("/products",payload)
       notification.success({
         message: `Success`,
         description: res,
@@ -33,10 +36,7 @@ const AddProduct= ({onClose,fetchProducts})=> {
               </Row>
               <br />
               <Formik
-                initialValues={{
-                  productName: "",
-                  price: "",
-                }}
+                initialValues={initialValues}
                 validationSchema={Yup.object({
                     productName: Yup.string().required("Required Field"),
                     price: Yup.string().required("Required Field"),
@@ -45,8 +45,9 @@ const AddProduct= ({onClose,fetchProducts})=> {
                   if (navigator.onLine) {
                     console.log("product added.....")
                     addProduct(values);
-                    onClose();
                     fetchProducts();
+                    resetForm({values:""})
+                    onClose();
                   } else {
                     notification.error({
                       message: `No internet connection`,
@@ -55,8 +56,9 @@ const AddProduct= ({onClose,fetchProducts})=> {
                     });
                   }
                 }}
+                
               >
-                {({handleChange,handleSubmit,values,errors,touched}) => (
+                {({handleChange,handleSubmit,values,resetForm,errors,touched}) => (
                   <Form>
                     <Row>
                     <Col>
@@ -66,6 +68,8 @@ const AddProduct= ({onClose,fetchProducts})=> {
                           onChange={handleChange}
                           error={touched["productName"] && errors["productName"]}
                           placeholder="New Product Name" 
+                          autoComplete='off'
+                         
                           />
                       </Col>
                       <Col md={24}>
@@ -75,12 +79,13 @@ const AddProduct= ({onClose,fetchProducts})=> {
                         onChange={handleChange}
                         error={touched["price"] && errors["price"]}
                         placeholder="New Product Price"
+                        autoComplete='off'
                         />
                       </Col>
                       <Col xs={12} className="d-flex justify-content-end">
                         <Button
                           type="primary"
-                          onClick={(e) => {onClose()}}
+                          onClick={(e) => { resetForm({values:""});onClose()}}
                         >
                           Close
                         </Button>

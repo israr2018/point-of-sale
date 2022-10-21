@@ -24,6 +24,7 @@ return <>
        visible={visible}
        onOk={handleOk}
        onCancel={handleCancel}
+       maskClosable={false}
     >
         {Childrens(handleCancel)}
     </Modal>

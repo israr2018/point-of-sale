@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { Row, Col, Button, notification } from "antd";
-import axios from 'axios';
-
+import api from '@api/RequestInterCeptor'
 const DeleteProduct=({title, message,onClose,handleDelete,fetchProducts,id})=>{
     const deleteProduct=async()=>{
         try {
-            const {data:res} =await axios.delete(`products/${id}`);
+            const {data:res} =await api.delete(`/products/${id}`);
             notification.success({
                 message: `Success`,
                 description: res,

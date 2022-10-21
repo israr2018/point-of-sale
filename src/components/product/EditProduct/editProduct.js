@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Row, Col, Button, notification,Input } from "antd";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import api from '../../../api/RequestInterCeptor';
+import api from '@api/RequestInterCeptor';
 const EditProduct= ({product ,onClose,fetchProducts})=> {
   const [submitting,setSubmitting]=useState(false)
     const toUpdate=product;
@@ -26,8 +26,6 @@ const EditProduct= ({product ,onClose,fetchProducts})=> {
                 })}
                 onSubmit={async (values) => {
                   if (navigator.onLine) {
-                //    updateProduct({...values,id:product.id});
-                console.log("submitting......");
                   setSubmitting(true)
                   try {
                     console.log("calling put");

@@ -1,14 +1,60 @@
-.AppHeader{
-    background-color: #00BFFF;
-    color:#ffffff;
+.nav-wrapper{
     display: flex;
+    background-color: #333;
     justify-content: center;
-     font-size:1.5em;
+    justify-content:flex-start ;
+    
+  }
+.menu-section{
+    display: flex;
+    justify-content: left;
 }
+.auth-section{
+    display: flex;
+    justify-content: right;
+    color: #fff;
+    padding-left: 70%;
+    padding-top: 25px;
+}
+.header-logo {
+    display: inline-block;
+    position: relative;
+    width: 150px;
+    line-height: 64px;
+}
+.header-menu{
+    display:flex;
+    justify-content: left;
+  
 
-.AppContent{
-    margin-top: 10px;
-    height: 100vh;
-    background-color: white;
-     color:red;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top:10px;
+   
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: #111;
+  }
+.signOut{
+    display: block;
+    justify-content: flex-end;
+    align-items: center;
+    float: right;
 }
